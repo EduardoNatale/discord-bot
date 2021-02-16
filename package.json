@@ -1,0 +1,24 @@
+{
+  "name": "discord-bot",
+  "version": "1.0.0",
+  "description": "It's is an API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "dev": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EduardoNatale/discord-bot.git"
+  },
+  "author": "Eduardo Natale Costa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/EduardoNatale/discord-bot/issues"
+  },
+  "homepage": "https://github.com/EduardoNatale/discord-bot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "express": "^4.17.1"
+  }
+}
