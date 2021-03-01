@@ -3,6 +3,13 @@ require("dotenv/config");
 
 const hgKey = process.env.hgkey;
 
+let sendMessage = (body, channel) => {
+  const json = JSON.parse(body);
+  let message = `**Clima**\n${json.results.city_name}\n${json.results.description}\n${json.results.temp}°C`;
+
+  channel.send(message);
+};
+
 exports.todayByApi = (discordClient) => {
   return (req, res, next) => {
     request.get(
@@ -14,10 +21,7 @@ exports.todayByApi = (discordClient) => {
               "812093017246531648"
             );
 
-            const json = JSON.parse(response.body);
-            let message = `**Clima**\n${json.results.city_name}\n${json.results.description}\n${json.results.temp}°C`;
-
-            channel.send(message);
+            sendMessage(response.body, channel);
 
             res.status(200).send({
               sucess: true,
@@ -53,14 +57,9 @@ exports.todayByDiscord = (channel, city) => {
     (error, response, body) => {
       if (response) {
         if (response.statusCode == 200) {
-          const json = JSON.parse(response.body);
-          let message = `**Clima**\n${json.results.city_name}\n${json.results.description}\n${json.results.temp}°C`;
-
-          channel.send(message);
-        } else {
-        }
-      } else {
-      }
+          sendMessage(response.body, channel);
+        } else channel.send("Algum problema ocorreu na api");
+      } else channel.send("Algum problema ocorreu na api");
     }
   );
 };
