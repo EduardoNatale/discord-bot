@@ -2,9 +2,9 @@
 
 It's is an API
 
-Para usar essa aplicação é necessário criar na raiz do projeto um .env
+To set up this project is necessary to create a .env
 
-### Para a API do twitter
+### Twitter's API
 
 ```
 apikey
@@ -13,18 +13,26 @@ accesstoken
 accesstokensecret
 ```
 
-### Para a API do discord
+### Discord's API
 
 ```
 discordtoken
 ```
 
-### Para as APIs da HG
+### HG's APIs
 
 ```
 hgkey
 ```
 
-### Para rodar
+### How to run
 
 `npm run dev`
+
+### Routes
+
+```
+/twitter/timeline
+/wheather/today/:city
+/finance/quote
+```
