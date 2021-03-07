@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 // const cheerio = require('cheerio');
 const axios = require('axios');
+const verifyToken = require('../../utils/token');
 
 const first = new Discord.MessageEmbed()
   .setColor('#6F2AF8')
@@ -28,7 +29,11 @@ const third = new Discord.MessageEmbed()
   .setThumbnail('https://cdn.lolalytics.com/op/img/emblems/gold.png');
 
 const stats = async (req, res) => {
-  const channel = global.discordClient.channels.cache.find((c) => c.name.includes('teste-api'));
+  if (verifyToken(req, res)) {
+    return;
+  }
+
+  const channel = global.discordClient.channels.cache.find((c) => c.name.includes('chamar-bots'));
 
   try {
     const url = `https://lolprofile.net/pt/summoner/br/${encodeURIComponent(

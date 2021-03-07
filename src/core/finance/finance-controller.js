@@ -1,13 +1,19 @@
 /* eslint-disable class-methods-use-this */
 const { default: axios } = require('axios');
 const sendMessage = require('../../utils/finance');
+const verifyToken = require('../../utils/token');
 
 const getQuote = async (req, res) => {
-  const channel = global.discordClient.channels.cache.get('812093017246531648');
+  if (verifyToken(req, res)) {
+    return;
+  }
+
+  const channel = global.discordClient.channels.cache.find((c) => c.name.includes('chamar-bots'));
   const url = `https://api.hgbrasil.com/finance?key=${process.env.hgkey}`;
 
   try {
     const result = await axios.get(url);
+
     if (result.status === 200) {
       sendMessage(result.data, channel);
 
@@ -15,6 +21,7 @@ const getQuote = async (req, res) => {
         success: true,
         response: {
           message: 'Sucesso!',
+          data: result.data,
         },
       });
     } else {
@@ -24,6 +31,7 @@ const getQuote = async (req, res) => {
         success: false,
         response: {
           message: 'Falha!',
+          data: result.data,
         },
       });
     }
@@ -34,6 +42,7 @@ const getQuote = async (req, res) => {
       success: false,
       response: {
         message: 'Algum problema ocorreu!',
+        data: error,
       },
     });
   }

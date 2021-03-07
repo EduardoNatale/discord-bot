@@ -1,9 +1,14 @@
 /* eslint-disable class-methods-use-this */
 const { default: axios } = require('axios');
 const sendMessage = require('../../utils/wheather');
+const verifyToken = require('../../utils/token');
 
 const getWheather = async (req, res) => {
-  const channel = global.discordClient.channels.cache.get('812093017246531648');
+  if (verifyToken(req, res)) {
+    return;
+  }
+
+  const channel = global.discordClient.channels.cache.find((c) => c.name.includes('chamar-bots'));
   const url = `https://api.hgbrasil.com/weather?key=${process.env.hgkey}&city_name=${encodeURIComponent(
     req.params.city,
   )}`;

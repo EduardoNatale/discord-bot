@@ -1,4 +1,5 @@
 const Twitter = require('twitter');
+const verifyToken = require('../../utils/token');
 
 const apiKey = process.env.apikey;
 const apiSecretKey = process.env.apikeysecret;
@@ -15,12 +16,16 @@ const client = new Twitter({
 const params = { screen_name: 'LoLegendsBR', count: 1 };
 
 const timeline = (req, res) => {
+  if (verifyToken(req, res)) {
+    return;
+  }
+
   client.get(
     'statuses/user_timeline',
     params,
     (error, tweets) => {
       if (!error) {
-        const channel = global.discordClient.channels.cache.get('812093017246531648');
+        const channel = global.discordClient.channels.cache.find((c) => c.name.includes('chamar-bots'));
 
         channel.send(`https://twitter.com/i/web/status/${tweets[0].id_str}`);
 
