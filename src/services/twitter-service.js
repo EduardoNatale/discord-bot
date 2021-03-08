@@ -12,14 +12,18 @@ const client = new Twitter({
   access_token_secret: accessTokenSecret,
 });
 
-const params = { screen_name: 'LoLegendsBR', count: 1 };
+const timeline = (channel, text) => {
+  const params = { screen_name: text, count: 1 };
 
-const timeline = (channel) => {
   client.get(
     'statuses/user_timeline',
     params,
     (error, tweets) => {
-      if (!error) { channel.send(`https://twitter.com/i/web/status/${tweets[0].id_str}`); } else channel.send('Algum problema ocorreu!');
+      if (!error) {
+        channel.send(`https://twitter.com/i/web/status/${tweets[0].id_str}`);
+      } else {
+        channel.send(String('Essa página não existe, tente outra.'));
+      }
     },
   );
 };

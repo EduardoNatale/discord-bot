@@ -2,12 +2,14 @@ const { CronJob } = require('cron');
 const twitterService = require('../services/twitter-service');
 
 // segundos minutos horas
-(new CronJob('00 00 06 * * *', (() => {
-  const channel = global.discordClient.channels.cache.find((c) => c.name.includes('twitter'));
+// Will send message at 9 am
+(new CronJob('00 00 12 * * *', (() => {
+  const channel = global.discordClient.channels.cache.find((c) => c.name.includes('league-of-legends'));
   twitterService.timeline(channel);
 }))).start();
 
-(new CronJob('00 00 14 * * *', (() => {
-  const channel = global.discordClient.channels.cache.find((c) => c.name.includes('twitter'));
+// Will send message at 6 pm
+(new CronJob('00 00 21 * * *', (() => {
+  const channel = global.discordClient.channels.cache.find((c) => c.name.includes('league-of-legends'));
   twitterService.timeline(channel);
 }))).start();

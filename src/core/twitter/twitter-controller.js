@@ -25,7 +25,7 @@ const timeline = (req, res) => {
     params,
     (error, tweets) => {
       if (!error) {
-        const channel = global.discordClient.channels.cache.find((c) => c.name.includes('chamar-bots'));
+        const channel = global.discordClient.channels.cache.find((c) => c.name.includes('chat'));
 
         channel.send(`https://twitter.com/i/web/status/${tweets[0].id_str}`);
 

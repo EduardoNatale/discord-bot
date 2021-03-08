@@ -8,7 +8,7 @@ const getQuote = async (req, res) => {
     return;
   }
 
-  const channel = global.discordClient.channels.cache.find((c) => c.name.includes('chamar-bots'));
+  const channel = global.discordClient.channels.cache.find((c) => c.name.includes('chat'));
   const url = `https://api.hgbrasil.com/finance?key=${process.env.hgkey}`;
 
   try {

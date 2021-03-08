@@ -33,7 +33,7 @@ const stats = async (req, res) => {
     return;
   }
 
-  const channel = global.discordClient.channels.cache.find((c) => c.name.includes('chamar-bots'));
+  const channel = global.discordClient.channels.cache.find((c) => c.name.includes('chat'));
 
   try {
     const url = `https://lolprofile.net/pt/summoner/br/${encodeURIComponent(
