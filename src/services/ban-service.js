@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 const skulls = ['818232496898572299', '818232654625112065', '818232673083719731'];
-const words = ['fdp', 'caralho', 'filho da puta', 'merda', 'fuder', 'bosta', 'b0sta', 'karol conká'];
+const words = ['fdp', 'caralho', 'puta', 'merda', 'fuder', 'bosta', 'b0sta', 'karol conká'];
 const messages = ['Cuidado com as palavras digitadas, elas podem fazer você se arrepender', 'O retardado! Já te disse uma vez, não me faça repetir.', 'Seu filho da puta do caralho é o último aviso, seu bosta.'];
 
 const ban = async (msg) => {
