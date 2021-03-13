@@ -11,5 +11,5 @@ const twitterService = require('../services/twitter-service');
 // Will send message at 6 pm
 (new CronJob('00 00 21 * * *', (() => {
   const channel = global.discordClient.channels.cache.find((c) => c.name.includes('league-of-legends'));
-  twitterService.timeline(channel, '');
+  twitterService.timeline(channel, 'LoLegendsBR');
 }))).start();
